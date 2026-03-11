@@ -10,65 +10,93 @@
 
 body{
 margin:0;
-padding:0;
 background:radial-gradient(circle at top,#0a0a1a,#000);
 color:white;
 font-family:'Playfair Display',serif;
 overflow-x:hidden;
 }
 
-/* estrellas */
+/* estrellas fondo */
 
 .stars{
 position:fixed;
 width:100%;
 height:100%;
 background:url("https://www.transparenttextures.com/patterns/stardust.png");
-animation:moveStars 80s linear infinite;
-opacity:0.6;
+opacity:.7;
+animation:starsMove 120s linear infinite;
 }
 
-@keyframes moveStars{
+@keyframes starsMove{
 from{background-position:0 0;}
 to{background-position:10000px 5000px;}
 }
 
-/* botón */
+/* estrella fugaz */
 
-.openBtn{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-padding:18px 35px;
-font-size:22px;
-border:none;
-border-radius:40px;
-background:linear-gradient(45deg,#ff4fd8,#9d4dff);
-color:white;
-cursor:pointer;
-box-shadow:0 0 20px #ff4fd8;
-transition:0.4s;
+.shooting{
+position:fixed;
+width:2px;
+height:80px;
+background:linear-gradient(white,transparent);
+transform:rotate(45deg);
+animation:shoot 3s linear infinite;
+opacity:.8;
 }
 
-.openBtn:hover{
-transform:translate(-50%,-50%) scale(1.05);
-box-shadow:0 0 35px #ff4fd8;
+@keyframes shoot{
+0%{transform:translateX(-200px) translateY(-200px) rotate(45deg);}
+100%{transform:translateX(120vw) translateY(120vh) rotate(45deg);}
+}
+
+/* sobre */
+
+.envelopeWrapper{
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.envelope{
+width:220px;
+height:150px;
+background:#ff7be5;
+position:relative;
+cursor:pointer;
+box-shadow:0 0 25px #ff7be5;
+}
+
+.flap{
+position:absolute;
+width:0;
+height:0;
+border-left:110px solid transparent;
+border-right:110px solid transparent;
+border-bottom:80px solid #ff9af0;
+top:-80px;
+left:0;
+transform-origin:bottom;
+transition:1s;
+}
+
+.envelope.open .flap{
+transform:rotateX(180deg);
 }
 
 /* carta */
 
 .container{
 display:none;
-max-width:900px;
+max-width:850px;
 margin:auto;
 padding:60px 30px;
-animation:fadeIn 2s;
+animation:fade 2s;
 }
 
-@keyframes fadeIn{
-from{opacity:0; transform:translateY(50px);}
-to{opacity:1; transform:translateY(0);}
+@keyframes fade{
+from{opacity:0; transform:translateY(40px);}
+to{opacity:1;}
 }
 
 /* título */
@@ -79,26 +107,20 @@ font-size:60px;
 text-align:center;
 margin-bottom:40px;
 color:#ff7be5;
-text-shadow:0 0 10px #ff7be5,0 0 30px #ff3df2;
-animation:glow 3s infinite alternate;
+text-shadow:0 0 10px #ff7be5,0 0 30px #ff4fd8;
 }
 
-@keyframes glow{
-from{text-shadow:0 0 10px #ff7be5;}
-to{text-shadow:0 0 30px #ff3df2,0 0 50px #ff3df2;}
-}
-
-/* carta estilo papel */
+/* carta estilo cristal */
 
 .letter{
 background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,0.2);
-backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,.2);
 padding:50px;
 border-radius:20px;
+backdrop-filter:blur(10px);
 line-height:1.9;
 font-size:20px;
-box-shadow:0 0 40px rgba(255,100,200,0.2);
+box-shadow:0 0 40px rgba(255,100,200,.3);
 }
 
 /* pétalos */
@@ -106,7 +128,6 @@ box-shadow:0 0 40px rgba(255,100,200,0.2);
 .petal{
 position:fixed;
 top:-10px;
-color:#ff6bd6;
 font-size:20px;
 animation:fall linear infinite;
 }
@@ -121,8 +142,8 @@ transform:translateY(110vh) rotate(360deg);
 
 .rose{
 position:fixed;
-top:-20px;
-font-size:25px;
+top:-10px;
+font-size:26px;
 animation:roseFall linear infinite;
 }
 
@@ -132,21 +153,67 @@ transform:translateY(110vh) rotate(180deg);
 }
 }
 
-/* corazón final */
+/* corazones al tocar */
+
+.heart{
+position:fixed;
+font-size:20px;
+animation:floatUp 2s forwards;
+}
+
+@keyframes floatUp{
+to{
+transform:translateY(-80px);
+opacity:0;
+}
+}
+
+/* constelación */
+
+.constellation{
+position:fixed;
+bottom:60px;
+left:50%;
+transform:translateX(-50%);
+font-size:25px;
+opacity:.7;
+animation:pulse 4s infinite;
+}
+
+@keyframes pulse{
+0%{opacity:.3}
+50%{opacity:1}
+100%{opacity:.3}
+}
+
+/* final cinematográfico */
 
 .final{
 text-align:center;
-margin-top:60px;
-font-size:40px;
+margin-top:70px;
+font-size:42px;
 font-family:'Great Vibes',cursive;
-color:#ff7be5;
 opacity:0;
-animation:finalAppear 4s forwards;
-animation-delay:5s;
+animation:finalShow 5s forwards;
+animation-delay:6s;
 }
 
-@keyframes finalAppear{
-to{opacity:1; transform:scale(1.1);}
+@keyframes finalShow{
+to{
+opacity:1;
+transform:scale(1.1);
+text-shadow:0 0 20px #ff7be5;
+}
+}
+
+/* dedicatoria */
+
+.dedication{
+text-align:center;
+margin-bottom:30px;
+font-style:italic;
+font-size:22px;
+color:#ffd6fa;
 }
 
 </style>
@@ -156,11 +223,25 @@ to{opacity:1; transform:scale(1.1);}
 
 <div class="stars"></div>
 
-<button class="openBtn" onclick="openLetter()">💌 Abrir mi carta</button>
+<div class="shooting" style="top:10%;left:10%;animation-delay:1s"></div>
+<div class="shooting" style="top:20%;left:60%;animation-delay:3s"></div>
+<div class="shooting" style="top:40%;left:30%;animation-delay:5s"></div>
 
-<div class="container" id="letterContainer">
+<div class="envelopeWrapper">
+
+<div class="envelope" onclick="openLetter()" id="env">
+<div class="flap"></div>
+</div>
+
+</div>
+
+<div class="container" id="letter">
 
 <div class="title">Para el amor de mi vida</div>
+
+<div class="dedication">
+Para la mujer que convierte cada día normal en un recuerdo hermoso y ilumina mis dias.
+</div>
 
 <div class="letter">
 
@@ -249,10 +330,15 @@ Ese alguien que piensa en ti con todo su corazón soy yo.
 Buenas noches, mi amor.<br>
 Te amo más de lo que las palabras podrían explicar.
 
+
+<div class="constellation">
+⭐ ✨ ⭐  
+✨ 💜 ✨  
+⭐ ✨ ⭐
 </div>
 
 <div class="final">
-🌌 Siempre contigo 💜
+🎬 Siempre contigo 💜
 </div>
 
 </div>
@@ -261,32 +347,52 @@ Te amo más de lo que las palabras podrían explicar.
 
 function openLetter(){
 
-document.querySelector(".openBtn").style.display="none";
-document.getElementById("letterContainer").style.display="block";
+document.getElementById("env").classList.add("open")
+
+setTimeout(()=>{
+document.querySelector(".envelopeWrapper").style.display="none"
+document.getElementById("letter").style.display="block"
+},1000)
 
 /* pétalos */
 
 for(let i=0;i<20;i++){
-let petal=document.createElement("div");
-petal.className="petal";
-petal.innerHTML="🌸";
-petal.style.left=Math.random()*100+"vw";
-petal.style.animationDuration=5+Math.random()*5+"s";
-document.body.appendChild(petal);
+let p=document.createElement("div")
+p.className="petal"
+p.innerHTML="🌸"
+p.style.left=Math.random()*100+"vw"
+p.style.animationDuration=5+Math.random()*5+"s"
+document.body.appendChild(p)
 }
 
 /* rosas */
 
 for(let i=0;i<10;i++){
-let rose=document.createElement("div");
-rose.className="rose";
-rose.innerHTML="🌹";
-rose.style.left=Math.random()*100+"vw";
-rose.style.animationDuration=7+Math.random()*6+"s";
-document.body.appendChild(rose);
+let r=document.createElement("div")
+r.className="rose"
+r.innerHTML="🌹"
+r.style.left=Math.random()*100+"vw"
+r.style.animationDuration=6+Math.random()*5+"s"
+document.body.appendChild(r)
 }
 
 }
+
+/* corazones al tocar */
+
+document.addEventListener("click",e=>{
+
+let heart=document.createElement("div")
+heart.className="heart"
+heart.innerHTML="💜"
+heart.style.left=e.clientX+"px"
+heart.style.top=e.clientY+"px"
+
+document.body.appendChild(heart)
+
+setTimeout(()=>heart.remove(),2000)
+
+})
 
 </script>
 
