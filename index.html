@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Carta para mi amor</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+margin:0;
+padding:0;
+background:radial-gradient(circle at top,#0a0a1a,#000);
+color:white;
+font-family:'Playfair Display',serif;
+overflow-x:hidden;
+}
+
+/* estrellas */
+
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:url("https://www.transparenttextures.com/patterns/stardust.png");
+animation:moveStars 80s linear infinite;
+opacity:0.6;
+}
+
+@keyframes moveStars{
+from{background-position:0 0;}
+to{background-position:10000px 5000px;}
+}
+
+/* botón */
+
+.openBtn{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+padding:18px 35px;
+font-size:22px;
+border:none;
+border-radius:40px;
+background:linear-gradient(45deg,#ff4fd8,#9d4dff);
+color:white;
+cursor:pointer;
+box-shadow:0 0 20px #ff4fd8;
+transition:0.4s;
+}
+
+.openBtn:hover{
+transform:translate(-50%,-50%) scale(1.05);
+box-shadow:0 0 35px #ff4fd8;
+}
+
+/* carta */
+
+.container{
+display:none;
+max-width:900px;
+margin:auto;
+padding:60px 30px;
+animation:fadeIn 2s;
+}
+
+@keyframes fadeIn{
+from{opacity:0; transform:translateY(50px);}
+to{opacity:1; transform:translateY(0);}
+}
+
+/* título */
+
+.title{
+font-family:'Great Vibes',cursive;
+font-size:60px;
+text-align:center;
+margin-bottom:40px;
+color:#ff7be5;
+text-shadow:0 0 10px #ff7be5,0 0 30px #ff3df2;
+animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+from{text-shadow:0 0 10px #ff7be5;}
+to{text-shadow:0 0 30px #ff3df2,0 0 50px #ff3df2;}
+}
+
+/* carta estilo papel */
+
+.letter{
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.2);
+backdrop-filter:blur(10px);
+padding:50px;
+border-radius:20px;
+line-height:1.9;
+font-size:20px;
+box-shadow:0 0 40px rgba(255,100,200,0.2);
+}
+
+/* pétalos */
+
+.petal{
+position:fixed;
+top:-10px;
+color:#ff6bd6;
+font-size:20px;
+animation:fall linear infinite;
+}
+
+@keyframes fall{
+to{
+transform:translateY(110vh) rotate(360deg);
+}
+}
+
+/* rosas */
+
+.rose{
+position:fixed;
+top:-20px;
+font-size:25px;
+animation:roseFall linear infinite;
+}
+
+@keyframes roseFall{
+to{
+transform:translateY(110vh) rotate(180deg);
+}
+}
+
+/* corazón final */
+
+.final{
+text-align:center;
+margin-top:60px;
+font-size:40px;
+font-family:'Great Vibes',cursive;
+color:#ff7be5;
+opacity:0;
+animation:finalAppear 4s forwards;
+animation-delay:5s;
+}
+
+@keyframes finalAppear{
+to{opacity:1; transform:scale(1.1);}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="stars"></div>
+
+<button class="openBtn" onclick="openLetter()">💌 Abrir mi carta</button>
+
+<div class="container" id="letterContainer">
+
+<div class="title">Para el amor de mi vida</div>
+
+<div class="letter">
+
+Esta noche, martes 10 de marzo de 2026, mientras el silencio de la noche cae lentamente y el mundo parece ir más despacio, no puedo evitar pensar en ti. Es curioso… pasamos casi todo el día juntos, compartiendo miradas, momentos, sonrisas y pequeños instantes que para cualquiera podrían parecer simples. Pero para mí fueron todo. Y aun así, aquí estoy, extrañándote como si hubieran pasado días desde la última vez que te vi.
+
+<br><br>
+
+Porque cuando uno ama de verdad, el tiempo nunca parece suficiente.
+
+<br><br>
+
+Hoy te miraba y pensaba en lo increíble que eres. En lo mucho que iluminas mis días con tu presencia, incluso cuando no dices nada. Hay algo en ti que calma mi mente y al mismo tiempo enciende mi corazón.
+
+<br><br>
+
+Sé que estos días no son los más cómodos para ti. Tu cuerpo está pasando por un momento delicado, y aun así estuviste conmigo compartiendo tu tiempo, tu cariño y tu energía. Eso solo me hace admirarte más y querer cuidarte con más ternura.
+
+<br><br>
+
+Si pudiera pedir un deseo esta noche, sería algo muy simple: tenerte aquí, recostada conmigo, mientras hablamos de cualquier cosa o de nada. Sentir tu cabeza en mi pecho y susurrarte cuánto te amo hasta que el sueño nos venza.
+
+<br><br>
+
+Porque contigo todo se siente diferente.
+
+<br><br>
+
+No eres solo mi novia.<br>
+Eres mi lugar favorito en el mundo.
+
+<br><br>
+
+Eres esa persona que, incluso después de pasar todo el día conmigo, hace que mi corazón todavía quiera más de ti.
+
+<br><br>
+
+Hay algo mágico en nosotros. Algo que no se puede explicar con lógica ni con palabras simples.
+
+<br><br>
+
+Y sí… esta noche te extraño.
+
+<br><br>
+
+Te extraño incluso después de haberte visto hace unas horas.<br>
+Extraño tu cercanía.<br>
+Tu forma de hablar.<br>
+Tu forma de ser tú.
+
+<br><br>
+
+Pero al mismo tiempo, ese pequeño sentimiento de extrañarte también me recuerda lo afortunado que soy de tenerte en mi vida.
+
+<br><br>
+
+No importa si es un día perfecto, un día difícil o un día cansado. Yo sigo aquí. Contigo. A tu lado.
+
+<br><br>
+
+Para cuidarte cuando lo necesites.<br>
+Para escucharte cuando quieras hablar.<br>
+Para abrazarte cuando solo necesites sentirte segura.
+
+<br><br>
+
+Esta noche, aunque no estés aquí físicamente, estás en cada uno de mis pensamientos.
+
+<br><br>
+
+Y si el amor tuviera una forma de describirse… probablemente sería esto: extrañar a alguien incluso cuando acabas de despedirte.
+
+<br><br>
+
+Te amo de una forma profunda, intensa y sincera.
+
+<br><br>
+
+Descansa, mi amor.
+
+<br><br>
+
+Ese alguien que piensa en ti con todo su corazón soy yo.
+
+<br><br>
+
+Buenas noches, mi amor.<br>
+Te amo más de lo que las palabras podrían explicar.
+
+</div>
+
+<div class="final">
+🌌 Siempre contigo 💜
+</div>
+
+</div>
+
+<script>
+
+function openLetter(){
+
+document.querySelector(".openBtn").style.display="none";
+document.getElementById("letterContainer").style.display="block";
+
+/* pétalos */
+
+for(let i=0;i<20;i++){
+let petal=document.createElement("div");
+petal.className="petal";
+petal.innerHTML="🌸";
+petal.style.left=Math.random()*100+"vw";
+petal.style.animationDuration=5+Math.random()*5+"s";
+document.body.appendChild(petal);
+}
+
+/* rosas */
+
+for(let i=0;i<10;i++){
+let rose=document.createElement("div");
+rose.className="rose";
+rose.innerHTML="🌹";
+rose.style.left=Math.random()*100+"vw";
+rose.style.animationDuration=7+Math.random()*6+"s";
+document.body.appendChild(rose);
+}
+
+}
+
+</script>
+
+</body>
+  </html>
