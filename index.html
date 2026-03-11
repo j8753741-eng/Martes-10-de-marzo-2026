@@ -2,130 +2,119 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Carta para mi amor</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@300;400&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Una carta que te estaba esperando</title>
 
 <style>
 
 body{
 margin:0;
-background:radial-gradient(circle at top,#0a0a1a,#000);
+font-family:Georgia,serif;
+background:linear-gradient(180deg,#07041a,#1a0f35,#2b1250);
 color:white;
-font-family:'Playfair Display',serif;
+text-align:center;
 overflow-x:hidden;
 }
 
-/* estrellas fondo */
+/* CIELO */
 
 .stars{
 position:fixed;
 width:100%;
 height:100%;
 background:url("https://www.transparenttextures.com/patterns/stardust.png");
-opacity:.7;
-animation:starsMove 120s linear infinite;
+animation:moveStars 60s linear infinite;
+opacity:.6;
+z-index:-2;
 }
 
-@keyframes starsMove{
+@keyframes moveStars{
 from{background-position:0 0;}
-to{background-position:10000px 5000px;}
+to{background-position:1000px 1000px;}
 }
 
-/* estrella fugaz */
-
-.shooting{
-position:fixed;
-width:2px;
-height:80px;
-background:linear-gradient(white,transparent);
-transform:rotate(45deg);
-animation:shoot 3s linear infinite;
-opacity:.8;
-}
-
-@keyframes shoot{
-0%{transform:translateX(-200px) translateY(-200px) rotate(45deg);}
-100%{transform:translateX(120vw) translateY(120vh) rotate(45deg);}
-}
-
-/* sobre */
-
-.envelopeWrapper{
-display:flex;
-justify-content:center;
-align-items:center;
-height:100vh;
-}
+/* SOBRE */
 
 .envelope{
-width:220px;
-height:150px;
-background:#ff7be5;
+width:200px;
+height:120px;
+background:#d36;
+margin:150px auto;
 position:relative;
 cursor:pointer;
-box-shadow:0 0 25px #ff7be5;
+border-radius:6px;
+box-shadow:0 10px 30px rgba(0,0,0,0.4);
 }
 
-.flap{
+.envelope:before{
+content:"";
 position:absolute;
-width:0;
-height:0;
-border-left:110px solid transparent;
-border-right:110px solid transparent;
-border-bottom:80px solid #ff9af0;
-top:-80px;
-left:0;
-transform-origin:bottom;
+border-left:100px solid transparent;
+border-right:100px solid transparent;
+border-bottom:60px solid #e48;
+top:0;
+}
+
+.envelope.open{
+transform:scale(0);
 transition:1s;
 }
 
-.envelope.open .flap{
-transform:rotateX(180deg);
-}
+/* TITULO */
 
-/* carta */
-
-.container{
+.title{
+font-size:40px;
+margin-top:40px;
 display:none;
-max-width:850px;
-margin:auto;
-padding:60px 30px;
-animation:fade 2s;
 }
 
-@keyframes fade{
-from{opacity:0; transform:translateY(40px);}
+.title span{
+opacity:0;
+animation:appear .05s forwards;
+}
+
+@keyframes appear{
 to{opacity:1;}
 }
 
-/* título */
+/* NOMBRE */
 
-.title{
-font-family:'Great Vibes',cursive;
-font-size:60px;
-text-align:center;
-margin-bottom:40px;
-color:#ff7be5;
-text-shadow:0 0 10px #ff7be5,0 0 30px #ff4fd8;
+.name{
+font-size:28px;
+background:linear-gradient(90deg,#ff9dff,#c77dff,#ffb6ff);
+-webkit-background-clip:text;
+color:transparent;
+text-shadow:0 0 12px rgba(255,150,255,0.9);
+display:none;
 }
 
-/* carta estilo cristal */
+/* CONTADOR */
+
+.counter{
+margin-top:20px;
+font-size:18px;
+color:#ffd9ff;
+display:none;
+}
+
+/* CARTA */
 
 .letter{
-background:rgba(255,255,255,0.05);
-border:1px solid rgba(255,255,255,.2);
-padding:50px;
+width:80%;
+max-width:750px;
+margin:40px auto;
+background:rgba(255,255,255,0.08);
+padding:40px;
 border-radius:20px;
-backdrop-filter:blur(10px);
-line-height:1.9;
-font-size:20px;
-box-shadow:0 0 40px rgba(255,100,200,.3);
+line-height:1.8;
+font-size:18px;
+display:none;
+box-shadow:0 0 35px rgba(200,120,255,0.3);
 }
 
-/* pétalos */
+/* ROSAS */
 
-.petal{
+.rose{
 position:fixed;
 top:-10px;
 font-size:20px;
@@ -133,87 +122,77 @@ animation:fall linear infinite;
 }
 
 @keyframes fall{
-to{
-transform:translateY(110vh) rotate(360deg);
-}
+0%{transform:translateY(-10px) rotate(0);}
+100%{transform:translateY(110vh) rotate(360deg);}
 }
 
-/* rosas */
+/* ESTRELLA FUGAZ */
 
-.rose{
+.shootingStar{
 position:fixed;
-top:-10px;
-font-size:26px;
-animation:roseFall linear infinite;
+width:2px;
+height:100px;
+background:linear-gradient(-45deg,white,transparent);
+animation:shoot 2s linear;
 }
 
-@keyframes roseFall{
-to{
-transform:translateY(110vh) rotate(180deg);
-}
+@keyframes shoot{
+0%{transform:translate(0,0) rotate(45deg);}
+100%{transform:translate(-600px,600px) rotate(45deg);opacity:0;}
 }
 
-/* corazones al tocar */
+/* CORAZONES */
 
-.heart{
+.touchHeart{
 position:fixed;
-font-size:20px;
-animation:floatUp 2s forwards;
+font-size:18px;
+animation:heartFloat 2s forwards;
+pointer-events:none;
 }
 
-@keyframes floatUp{
-to{
-transform:translateY(-80px);
+@keyframes heartFloat{
+0%{opacity:1;transform:scale(.5);}
+100%{opacity:0;transform:translateY(-80px) scale(1.4);}
+}
+
+/* TE AMO */
+
+.finalLove{
+font-size:50px;
+margin:60px 0;
+color:#ffb6ff;
+text-shadow:0 0 20px #ff6bff,0 0 40px #ff4dff;
+display:none;
+}
+
+/* ROSA FINAL */
+
+.finalRose{
+font-size:40px;
+display:none;
+}
+
+/* FRASE FINAL */
+
+.forever{
+font-size:32px;
+margin-top:30px;
+letter-spacing:3px;
 opacity:0;
-}
-}
-
-/* constelación */
-
-.constellation{
-position:fixed;
-bottom:60px;
-left:50%;
-transform:translateX(-50%);
-font-size:25px;
-opacity:.7;
-animation:pulse 4s infinite;
+transform:translateY(30px);
 }
 
-@keyframes pulse{
-0%{opacity:.3}
-50%{opacity:1}
-100%{opacity:.3}
+.forever.show{
+animation:cinema 3s forwards;
 }
 
-/* final cinematográfico */
-
-.final{
-text-align:center;
-margin-top:70px;
-font-size:42px;
-font-family:'Great Vibes',cursive;
-opacity:0;
-animation:finalShow 5s forwards;
-animation-delay:6s;
-}
-
-@keyframes finalShow{
+@keyframes cinema{
 to{
 opacity:1;
-transform:scale(1.1);
-text-shadow:0 0 20px #ff7be5;
+transform:translateY(0);
+letter-spacing:6px;
+text-shadow:0 0 20px #ff9dff;
 }
-}
-
-/* dedicatoria */
-
-.dedication{
-text-align:center;
-margin-bottom:30px;
-font-style:italic;
-font-size:22px;
-color:#ffd6fa;
 }
 
 </style>
@@ -223,177 +202,174 @@ color:#ffd6fa;
 
 <div class="stars"></div>
 
-<div class="shooting" style="top:10%;left:10%;animation-delay:1s"></div>
-<div class="shooting" style="top:20%;left:60%;animation-delay:3s"></div>
-<div class="shooting" style="top:40%;left:30%;animation-delay:5s"></div>
+<div class="envelope" id="envelope" onclick="openLetter()"></div>
 
-<div class="envelopeWrapper">
+<h1 class="title" id="title"></h1>
 
-<div class="envelope" onclick="openLetter()" id="env">
-<div class="flap"></div>
-</div>
+<div class="name">Para NOMBRE_DE_TU_NOVIA 💜</div>
 
-</div>
+<div class="counter" id="counter"></div>
 
-<div class="container" id="letter">
+<div class="letter" id="letter">
 
-<div class="title">Para el amor de mi vida</div>
+<p>Amor mío,</p>
 
-<div class="dedication">
-Para la mujer que convierte cada día normal en un recuerdo hermoso y ilumina mis dias.
-</div>
+<p>
+Esta carta en realidad nació anoche. La escribí pensando en ti, en lo que habíamos vivido ese día y en lo mucho que significas para mí. Pero el sueño te venció temprano… y aunque no pude enviártela en ese momento, se quedó aquí, esperando pacientemente para poder llegar a ti.
+</p>
 
-<div class="letter">
+<p>
+Y ahora que estamos juntos otra vez, quiero que la leas sabiendo algo muy simple: cada palabra aquí salió de mi corazón pensando únicamente en ti.
+</p>
 
-Esta noche, martes 10 de marzo de 2026, mientras el silencio de la noche cae lentamente y el mundo parece ir más despacio, no puedo evitar pensar en ti. Es curioso… pasamos casi todo el día juntos, compartiendo miradas, momentos, sonrisas y pequeños instantes que para cualquiera podrían parecer simples. Pero para mí fueron todo. Y aun así, aquí estoy, extrañándote como si hubieran pasado días desde la última vez que te vi.
+<p>
+Anoche, mientras el silencio de la noche caía lentamente y el mundo parecía ir más despacio, no podía evitar pensar en ti. Es curioso… habíamos pasado casi todo el día juntos, compartiendo miradas, momentos y sonrisas que para cualquiera podrían parecer simples. Pero para mí fueron todo.
+</p>
 
-<br><br>
-
+<p>
 Porque cuando uno ama de verdad, el tiempo nunca parece suficiente.
+</p>
 
-<br><br>
+<p>
+Hoy te miraba y pensaba en lo increíble que eres. En cómo iluminas mis días con tu presencia incluso cuando no dices nada. Hay algo en ti que calma mi mente y al mismo tiempo enciende mi corazón.
+</p>
 
-Hoy te miraba y pensaba en lo increíble que eres. En lo mucho que iluminas mis días con tu presencia, incluso cuando no dices nada. Hay algo en ti que calma mi mente y al mismo tiempo enciende mi corazón.
+<p>
+Sé que estos días no son los más cómodos para ti, y aun así estuviste conmigo compartiendo tu tiempo y tu cariño. Eso solo me hace admirarte más y querer cuidarte con más ternura.
+</p>
 
-<br><br>
-
-Sé que estos días no son los más cómodos para ti. Tu cuerpo está pasando por un momento delicado, y aun así estuviste conmigo compartiendo tu tiempo, tu cariño y tu energía. Eso solo me hace admirarte más y querer cuidarte con más ternura.
-
-<br><br>
-
-Si pudiera pedir un deseo esta noche, sería algo muy simple: tenerte aquí, recostada conmigo, mientras hablamos de cualquier cosa o de nada. Sentir tu cabeza en mi pecho y susurrarte cuánto te amo hasta que el sueño nos venza.
-
-<br><br>
-
-Porque contigo todo se siente diferente.
-
-<br><br>
-
-No eres solo mi novia.<br>
+<p>
+No eres solo mi novia.  
 Eres mi lugar favorito en el mundo.
+</p>
 
-<br><br>
+<p>
+Eres esa persona que incluso después de pasar todo el día conmigo hace que mi corazón todavía quiera más de ti.
+</p>
 
-Eres esa persona que, incluso después de pasar todo el día conmigo, hace que mi corazón todavía quiera más de ti.
+<p>
+Y sí… anoche también te extrañé.
+</p>
 
-<br><br>
+<p>
+Pero ese pequeño sentimiento solo me recuerda lo afortunado que soy de tenerte en mi vida.
+</p>
 
-Hay algo mágico en nosotros. Algo que no se puede explicar con lógica ni con palabras simples.
-
-<br><br>
-
-Y sí… esta noche te extraño.
-
-<br><br>
-
-Te extraño incluso después de haberte visto hace unas horas.<br>
-Extraño tu cercanía.<br>
-Tu forma de hablar.<br>
-Tu forma de ser tú.
-
-<br><br>
-
-Pero al mismo tiempo, ese pequeño sentimiento de extrañarte también me recuerda lo afortunado que soy de tenerte en mi vida.
-
-<br><br>
-
+<p>
 No importa si es un día perfecto, un día difícil o un día cansado. Yo sigo aquí. Contigo. A tu lado.
+</p>
 
-<br><br>
-
-Para cuidarte cuando lo necesites.<br>
-Para escucharte cuando quieras hablar.<br>
+<p>
+Para cuidarte cuando lo necesites.  
+Para escucharte cuando quieras hablar.  
 Para abrazarte cuando solo necesites sentirte segura.
+</p>
 
-<br><br>
-
-Esta noche, aunque no estés aquí físicamente, estás en cada uno de mis pensamientos.
-
-<br><br>
-
-Y si el amor tuviera una forma de describirse… probablemente sería esto: extrañar a alguien incluso cuando acabas de despedirte.
-
-<br><br>
-
+<p>
 Te amo de una forma profunda, intensa y sincera.
+</p>
 
-<br><br>
+<p>
+Con todo mi amor para ti, preciosa.
+</p>
 
-Descansa, mi amor.
-
-<br><br>
-
-Ese alguien que piensa en ti con todo su corazón soy yo.
-
-<br><br>
-
-Buenas noches, mi amor.<br>
-Te amo más de lo que las palabras podrían explicar.
-<p>con todo mi amor para ti preciosa</p>
-  <p><strong>JUAN KALETH MENDOZA PRIMERA 💜</strong></p>
-
-<div class="constellation">
-⭐ ✨ ⭐  
-✨ 💜 ✨  
-⭐ ✨ ⭐
-</div>
-
-<div class="final">
-🎬 Siempre contigo 💜
-</div>
+<p>
+<strong>JUAN KALETH MENDOZA PRIMERA 💜</strong>
+</p>
 
 </div>
+
+<div class="finalLove" id="love">TE AMO</div>
+<div class="finalRose" id="rose">🌹</div>
+<div class="forever" id="forever">Siempre contigo</div>
 
 <script>
 
+/* TITULO */
+
+const text="Una carta que te estaba esperando";
+const title=document.getElementById("title");
+
+text.split("").forEach((c,i)=>{
+const span=document.createElement("span");
+span.textContent=c;
+span.style.animationDelay=i*.05+"s";
+title.appendChild(span);
+});
+
+/* ABRIR SOBRE */
+
 function openLetter(){
 
-document.getElementById("env").classList.add("open")
+document.getElementById("envelope").classList.add("open");
 
 setTimeout(()=>{
-document.querySelector(".envelopeWrapper").style.display="none"
-document.getElementById("letter").style.display="block"
+title.style.display="block";
+document.querySelector(".name").style.display="block";
+document.getElementById("letter").style.display="block";
+document.getElementById("counter").style.display="block";
+
+setTimeout(()=>{
+document.getElementById("love").style.display="block";
+document.getElementById("rose").style.display="block";
+document.getElementById("forever").classList.add("show");
+},5000)
+
 },1000)
 
-/* pétalos */
-
-for(let i=0;i<20;i++){
-let p=document.createElement("div")
-p.className="petal"
-p.innerHTML="🌸"
-p.style.left=Math.random()*100+"vw"
-p.style.animationDuration=5+Math.random()*5+"s"
-document.body.appendChild(p)
 }
 
-/* rosas */
+/* CONTADOR */
 
-for(let i=0;i<10;i++){
-let r=document.createElement("div")
-r.className="rose"
-r.innerHTML="🌹"
-r.style.left=Math.random()*100+"vw"
-r.style.animationDuration=6+Math.random()*5+"s"
-document.body.appendChild(r)
-}
+const start=new Date("March 10, 2026 22:00:00").getTime();
 
-}
+setInterval(()=>{
+const now=new Date().getTime();
+const diff=now-start;
 
-/* corazones al tocar */
+const h=Math.floor(diff/1000/60/60);
+const m=Math.floor(diff/1000/60)%60;
+const s=Math.floor(diff/1000)%60;
+
+document.getElementById("counter").innerText=
+"Esta carta estuvo esperando para ti durante "+h+" horas, "+m+" minutos y "+s+" segundos 💌";
+
+},1000);
+
+/* ROSAS */
+
+setInterval(()=>{
+const r=document.createElement("div");
+r.className="rose";
+r.innerHTML="🌹";
+r.style.left=Math.random()*100+"vw";
+r.style.animationDuration=6+Math.random()*4+"s";
+document.body.appendChild(r);
+setTimeout(()=>r.remove(),10000);
+},500);
+
+/* ESTRELLAS FUGACES */
+
+setInterval(()=>{
+const s=document.createElement("div");
+s.className="shootingStar";
+s.style.left=Math.random()*window.innerWidth+"px";
+s.style.top=Math.random()*200+"px";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),2000);
+},6000);
+
+/* CORAZONES TOQUE */
 
 document.addEventListener("click",e=>{
-
-let heart=document.createElement("div")
-heart.className="heart"
-heart.innerHTML="💜"
-heart.style.left=e.clientX+"px"
-heart.style.top=e.clientY+"px"
-
-document.body.appendChild(heart)
-
-setTimeout(()=>heart.remove(),2000)
-
-})
+const h=document.createElement("div");
+h.className="touchHeart";
+h.innerHTML="💜";
+h.style.left=e.clientX+"px";
+h.style.top=e.clientY+"px";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),2000);
+});
 
 </script>
 
